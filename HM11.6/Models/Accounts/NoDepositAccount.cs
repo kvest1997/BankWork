@@ -11,7 +11,7 @@ namespace HM11._6.Models.Accounts
         public NoDepositAccount(Account account) : base(account.Client,account.BankAccount, account.BalanceAccount)
         {
             Id = account.Id;
-            TypeAccount = "Не депозитный";
+            TypeAccountBank = TypeAccount.NEDEPOSIT;
         }
 
         public override string ToString()

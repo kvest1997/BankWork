@@ -12,7 +12,7 @@ namespace HM11._6.Models.Accounts
             base(account.Client,account.BankAccount,account.BalanceAccount)
         {
             Id = account.Id;
-            TypeAccount = "Депозитный";
+            TypeAccountBank = TypeAccount.DEPOSIT;
         }
 
         public override string ToString()

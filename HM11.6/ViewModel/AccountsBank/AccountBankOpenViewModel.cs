@@ -35,13 +35,29 @@ namespace HM11._6.ViewModel.AccountsBank
         private bool CanSaveNewAccontBankExecute(object p) => true;
         private void OnSaveNewAccountBankExecuted(object p)
         {
-            var account = new DepositAccount(new Account(_currentClient, _accountBank, _balance));
+            var accountTemp = new Account(_currentClient, _accountBank, _balance);
+            Account account;
 
-            _bank.OpenAccountBank(account);
-            _currentAccountViewModel.UpdateAccountsList.Invoke();
+            switch (_typeAccountBank)
+            {
+                case TypeAccount.DEPOSIT:
+                    account = new DepositAccount(accountTemp);
+                    break;
+                case TypeAccount.NEDEPOSIT: 
+                    account = new NoDepositAccount(accountTemp);
+                    break;
+                default: MessageBox.Show("Не выбран тип аккаунта"); account = null;
+                    break;
+            }
 
-            if (p is Window win)
-                win.Close();
+            if (account != null)
+            {
+                _bank.OpenAccountBank(account);
+                _currentAccountViewModel.UpdateAccountsList.Invoke();
+
+                if (p is Window win)
+                    win.Close();
+            }
         }
 
         #region AccountBank
@@ -63,7 +79,12 @@ namespace HM11._6.ViewModel.AccountsBank
         #endregion
 
         #region TypeAccount
-
+        private TypeAccount _typeAccountBank;
+        public TypeAccount TypeAccountBank
+        {
+            get => _typeAccountBank;
+            set => Set(ref _typeAccountBank, value);
+        }
         #endregion
     }
 }

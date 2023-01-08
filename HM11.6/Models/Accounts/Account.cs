@@ -4,6 +4,12 @@ using System;
 
 namespace HM11._6.Models.Accounts
 {
+    public enum TypeAccount
+    {
+        DEPOSIT = 0,
+        NEDEPOSIT = 1
+    }
+
     public class Account
     {
         private int id;
@@ -28,8 +34,8 @@ namespace HM11._6.Models.Accounts
             set => _bankAccount = value;
         }
 
-        private string _typeAccount;
-        public string TypeAccount
+        private TypeAccount _typeAccount;
+        public TypeAccount TypeAccountBank
         { 
             get => _typeAccount;
             set => _typeAccount = value;

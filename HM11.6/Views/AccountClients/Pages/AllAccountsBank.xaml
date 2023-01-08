@@ -49,7 +49,7 @@
                                     Binding="{Binding BankAccount, Mode=OneWay}"
                                     Width="*"/>
                 <DataGridTextColumn Header="Тип счета"
-                                    Binding="{Binding TypeAccount, Mode=OneWay}"
+                                    Binding="{Binding TypeAccountBank, Mode=OneWay}"
                                     Width="*"/>
                 <DataGridTextColumn Header="Баланс" 
                                     Binding="{Binding BalanceAccount, Mode=OneWay}"

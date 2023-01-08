@@ -107,7 +107,9 @@
                     Grid.Row="2"
                     Style="{StaticResource SilverBorederData}">
                 <ComboBox 
-                    Style="{StaticResource SilverComboBoxData}" />
+                    Style="{StaticResource SilverComboBoxData}" 
+                    ItemsSource="{Binding TypeAccountBank}"
+                    DisplayMemberPath="TypeAccount"/>
             </Border>
 
         </Grid>
