@@ -16,7 +16,11 @@ namespace HM11._6.Models.Infastructure
         }
         
 
-
+        /// <summary>
+        /// Добавление денежных средств на счет
+        /// </summary>
+        /// <param name="balance">Кол-во пополнений</param>
+        /// <returns>Возвращается обновленный счет</returns>
         public Account AddBalance(int balance)
         {
             int currentBalance = Convert.ToInt32(currentAccount.BalanceAccount);

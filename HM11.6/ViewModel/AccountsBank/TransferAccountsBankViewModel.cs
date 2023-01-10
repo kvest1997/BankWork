@@ -1,6 +1,7 @@
 ﻿using HM11._6.Models;
 using HM11._6.Models.Accounts;
 using HM11._6.Models.Clients;
+using HM11._6.Models.Infastructure;
 using HM11._6.Models.Infastructure.Commands;
 using HM11._6.ViewModel.Base;
 using HM11._6.ViewModel.MainWindowPage;
@@ -23,6 +24,8 @@ namespace HM11._6.ViewModel.AccountsBank
         public ObservableCollection<ClientInfo> AllClientInfos { get; private set; }
         private readonly ClientInfo _currentClient;
         private readonly ClientsViewModel clientVM;
+        private ITransferBalanceAccount<Account> TransferBalance { get; set; }
+
 
         public TransferAccountsBankViewModel()
         { }
@@ -40,11 +43,17 @@ namespace HM11._6.ViewModel.AccountsBank
 
             UpdateAll += UpdateAlls;
 
+            TransferBalance = new TransferBalanceAccount(clientVM.MainViewModel.Bank);
+
             TransferFromTo = new RelayCommand(OnTransferFromToExecuted,
                 CanTransferFromToExecute);
+            TransferAccountClientToClient = new RelayCommand(OnTransferAccountClientToClientExecuted,
+                CanTransferBalanceExecute);
         }
 
-
+        /// <summary>
+        /// Обновление данных
+        /// </summary>
         private void UpdateAlls()
         {
             AllCurrentAccountInfos.Clear();
@@ -54,6 +63,9 @@ namespace HM11._6.ViewModel.AccountsBank
             GetAllAccount();
         }
 
+        /// <summary>
+        /// Получение всех пользователей
+        /// </summary>
         private void GetAllClient()
         {
             foreach (var c in clientVM.MainViewModel.Bank.GetClientInfos())
@@ -64,7 +76,9 @@ namespace HM11._6.ViewModel.AccountsBank
                 }
             }
         }
-
+        /// <summary>
+        /// Получение нужных счетов
+        /// </summary>
         private void GetAllAccount()
         {
             foreach (var account in clientVM.MainViewModel.Bank.GetAccountsInfos())
@@ -76,6 +90,9 @@ namespace HM11._6.ViewModel.AccountsBank
             }
         }
 
+        /// <summary>
+        /// Реализация перевода между счетами
+        /// </summary>
         #region TransferAccountBankFromTo
         private AccountsInfo _selectedAccountFrom;
         public AccountsInfo SelectedAccountFrom
@@ -142,8 +159,24 @@ namespace HM11._6.ViewModel.AccountsBank
         private bool CanTransferFromToExecute(object p) => true;
         #endregion
 
+
+        /// <summary>
+        /// Реализация перевода между пользователями
+        /// </summary>
         #region TransferAccountBankClientToClient
 
+        private AccountsInfo _selectAccountToClient;
+        public AccountsInfo SelectAccountToClient
+        {
+            get => _selectAccountToClient;
+            set => Set(ref _selectAccountToClient, value);
+        }
+        private int balanceTransfer;
+        public int BalanceTransfer
+        {
+            get => balanceTransfer;
+            set => Set(ref balanceTransfer, value);
+        }
         private ClientInfo _selectedClient;
         public ClientInfo SelectedClient
         {
@@ -151,7 +184,12 @@ namespace HM11._6.ViewModel.AccountsBank
             set => Set(ref _selectedClient, value);
         }
 
-
+        public ICommand TransferAccountClientToClient { get; }
+        private void OnTransferAccountClientToClientExecuted(object p)
+        {
+            TransferBalance.TransferBalance(SelectAccountToClient, SelectedClient, BalanceTransfer);
+        }
+        private bool CanTransferBalanceExecute(object p) => true;
 
         #endregion
     }

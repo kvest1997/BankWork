@@ -5,12 +5,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HM11._6.Views.AccountClients"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:typeAccount="clr-namespace:HM11._6.Models.Accounts"
         xmlns:viewModel="clr-namespace:HM11._6.ViewModel.AccountsBank" d:DataContext="{d:DesignInstance Type=viewModel:AccountBankOpenViewModel}"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="Открытие счета" Height="200" Width="400"
         Background="#272537">
+
+    <Window.Resources>
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="typeAccount:TypeAccount"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -108,8 +119,8 @@
                     Style="{StaticResource SilverBorederData}">
                 <ComboBox 
                     Style="{StaticResource SilverComboBoxData}" 
-                    ItemsSource="{Binding TypeAccountBank}"
-                    DisplayMemberPath="TypeAccount"/>
+                    SelectedItem="{Binding TypeAccountBank}"
+                    ItemsSource="{Binding Source={StaticResource dataFromEnum}}"/>
             </Border>
 
         </Grid>

@@ -33,6 +33,11 @@ namespace HM11._6.ViewModel.AccountsBank
                 CanAddBalanceExecute);
         }
 
+        /// <summary>
+        /// Реализация добавления денежных средств на счет
+        /// </summary>
+        #region AddBalanceToAccount
+
         private void AddBalanceToAccount()
         {
             currentAccount = (AccountsInfo)addAccountBalance.AddBalance(_addBalanceCount);
@@ -70,5 +75,6 @@ namespace HM11._6.ViewModel.AccountsBank
                 return currentAccount.BankAccount;
             }
         }
+        #endregion
     }
 }

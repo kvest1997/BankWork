@@ -71,7 +71,7 @@ namespace HM11._6.ViewModel.MainWindowPage
             EnableEditClient = MainViewModel.Worker.UserAccess.Commands.EditClient && Clients.Count > 0;
         }
 
-
+        #region AddClient
         public ICommand AddClientCommand { get; }
         private void OnAddClientCommandExecuted(object p)
         {
@@ -82,7 +82,9 @@ namespace HM11._6.ViewModel.MainWindowPage
         }
 
         private bool CanAddClientCommandExecute(object p) => true;
+        #endregion
 
+        #region DelClientCommnad
         public ICommand DelClientCommand { get; }
         private void OnDelClientCommandExecuted(object p)
         {
@@ -93,7 +95,9 @@ namespace HM11._6.ViewModel.MainWindowPage
         }
 
         private bool CanDelClientCommandExecute(object p) => true;
+        #endregion
 
+        #region EditClient
         public ICommand EditClientCommand { get; }
         private void OnEditClientCommandExecuted(object p)
         {
@@ -104,9 +108,13 @@ namespace HM11._6.ViewModel.MainWindowPage
             clientCard.DataContext = clientCardViewModel;
             clientCard.ShowDialog();
         }
-
         private bool CanEditClientCommandExecute(object p) => true;
+        #endregion
 
+        /// <summary>
+        /// Все счета клиента
+        /// </summary>
+        #region AccountClient
         public ICommand AccountClientCommand { get; }
         private void OnAccountClientCommand(object p)
         {
@@ -118,6 +126,7 @@ namespace HM11._6.ViewModel.MainWindowPage
             accountsClient.ShowDialog();
         }
         private bool CanAccountClientCommandExecute(object p) => true;
+        #endregion
 
         private bool _enableAddClient;
         public bool EnableAddClient

@@ -4,12 +4,6 @@ using System;
 
 namespace HM11._6.Models.Accounts
 {
-    public enum TypeAccount
-    {
-        DEPOSIT = 0,
-        NEDEPOSIT = 1
-    }
-
     public class Account
     {
         private int id;

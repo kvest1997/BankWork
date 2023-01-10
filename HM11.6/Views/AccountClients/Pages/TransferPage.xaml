@@ -86,13 +86,15 @@
                            Background="NavajoWhite"/>
                 <ComboBox Margin="5"
                           ItemsSource="{Binding AllCurrentAccountInfos}"
-                          DisplayMemberPath="BankAccount"/>
-                <TextBox Text="Сколько перевести"
+                          DisplayMemberPath="BankAccount"
+                          SelectedItem="{Binding SelectAccountToClient}"/>
+                <TextBox Text="{Binding BalanceTransfer}"
                          Margin="5"/>
 
                 <Button Content="Перевести"
                     HorizontalAlignment="Right"
-                        Margin="5"/>
+                        Margin="5"
+                        Command="{Binding TransferAccountClientToClient}"/>
             </StackPanel>
         </Border>
         

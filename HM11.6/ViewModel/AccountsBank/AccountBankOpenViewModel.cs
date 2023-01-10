@@ -3,11 +3,7 @@ using HM11._6.Models.Accounts;
 using HM11._6.Models.Clients;
 using HM11._6.Models.Infastructure.Commands;
 using HM11._6.ViewModel.Base;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -19,6 +15,7 @@ namespace HM11._6.ViewModel.AccountsBank
         private readonly CurrentAccountBankViewModel _currentAccountViewModel;
         private ClientInfo _currentClient { get; set; }
         
+
         public AccountBankOpenViewModel(Bank bank, 
             CurrentAccountBankViewModel currentAccountBank,
             ClientInfo currentClient)
@@ -31,12 +28,38 @@ namespace HM11._6.ViewModel.AccountsBank
                 CanSaveNewAccontBankExecute);
         }
 
+        /// <summary>
+        /// Проверка на тип аккаунта
+        /// </summary>
+        /// <param name="typeAccount">Выбранный тип</param>
+        /// <returns>Возвращает ложь или истина при проверке</returns>
+        private bool CheckTypeAccount(TypeAccount typeAccount)
+        {
+            bool flag = false;
+            foreach (var item in _bank.GetAccountsInfos())
+            {
+                if (item.Client.Id == _currentClient.Id && item.TypeAccountBank == typeAccount)
+                {
+                    MessageBox.Show($"{typeAccount} счет уже есть");
+                    flag = true;
+                    return flag;
+                }
+            }
+            return flag;
+        }
+
+        #region SaveNewAccountBank
         public ICommand SaveNewAccountBank { get; }
         private bool CanSaveNewAccontBankExecute(object p) => true;
         private void OnSaveNewAccountBankExecuted(object p)
         {
             var accountTemp = new Account(_currentClient, _accountBank, _balance);
             Account account;
+
+            if (CheckTypeAccount(_typeAccountBank))
+            {
+                return;
+            }
 
             switch (_typeAccountBank)
             {
@@ -59,6 +82,7 @@ namespace HM11._6.ViewModel.AccountsBank
                     win.Close();
             }
         }
+        #endregion
 
         #region AccountBank
         private string _accountBank = Account.SetAccountBank();

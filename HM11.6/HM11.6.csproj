@@ -62,6 +62,7 @@
     <Compile Include="Models\Accounts\AccountsInfo.cs" />
     <Compile Include="Models\Accounts\DepositAccount.cs" />
     <Compile Include="Models\Accounts\NoDepositAccount.cs" />
+    <Compile Include="Models\Accounts\TypeAccount.cs" />
     <Compile Include="Models\AppSettings\AppSetting.cs" />
     <Compile Include="Models\AppSettings\AppSettingRepository.cs" />
     <Compile Include="Models\AppSettings\IAppSetting.cs" />
@@ -75,7 +76,9 @@
     <Compile Include="Models\Infastructure\Commands\RelayCommand.cs" />
     <Compile Include="Models\Infastructure\InputValueHighlightingConvert.cs" />
     <Compile Include="Models\Accounts\Account.cs" />
+    <Compile Include="Models\Infastructure\ITransferBalanceAccount.cs" />
     <Compile Include="Models\Infastructure\RandomProvider.cs" />
+    <Compile Include="Models\Infastructure\TransferBalanceAccount.cs" />
     <Compile Include="Models\PersonalData\NumberPhone.cs" />
     <Compile Include="Models\PersonalData\PassportData.cs" />
     <Compile Include="Models\PersonalData\Person.cs" />
