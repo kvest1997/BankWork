@@ -76,9 +76,26 @@ namespace HM11._6.ViewModel.AccountsBank
         }
         private bool CanAddBalanceAccountExecute(object p) => true;
 
+
+        private bool CheckAccountBank()
+        {
+            bool flag = false;
+
+            if (Accounts.Count == 2)
+                flag = true;
+
+            return flag;
+        }
+
         public ICommand OpenNewAccountBank { get; }
         private void OnOpenNewAccountBankExecuted(object p)
         {
+            if (CheckAccountBank())
+            {
+                MessageBox.Show("Клиент может иметь только 2 счета");
+                return;
+            }
+
             AccountBankOpenWindow accountBankOpenWindow = new AccountBankOpenWindow();
             AccountBankOpenViewModel accountBankOpenViewModel = new AccountBankOpenViewModel(_bank, this, ClientInfo);
             accountBankOpenWindow.DataContext = accountBankOpenViewModel;

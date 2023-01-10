@@ -62,6 +62,7 @@
     <Compile Include="Models\Accounts\AccountsInfo.cs" />
     <Compile Include="Models\Accounts\DepositAccount.cs" />
     <Compile Include="Models\Accounts\NoDepositAccount.cs" />
+    <Compile Include="Models\Accounts\TypeAccount.cs" />
     <Compile Include="Models\AppSettings\AppSetting.cs" />
     <Compile Include="Models\AppSettings\AppSettingRepository.cs" />
     <Compile Include="Models\AppSettings\IAppSetting.cs" />
