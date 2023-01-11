@@ -102,6 +102,17 @@ namespace HM11._6.ViewModel.AccountsBank
         /// </summary>
         #region OpenNewAccountBank
 
+
+        private bool CheckAccountBank()
+        {
+            bool flag = false;
+
+            if (Accounts.Count == 2)
+                flag = true;
+
+            return flag;
+        }
+
         public ICommand OpenNewAccountBank { get; }
         private void OnOpenNewAccountBankExecuted(object p)
         {

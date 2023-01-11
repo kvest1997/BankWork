@@ -12,7 +12,11 @@ DEBUG;TRACE
 D:\Учеба\Skillbox\Homework11.6-main\HM11.6\App.xaml
 11643396005
 
+<<<<<<< HEAD
 57345572576
+=======
+55-91362267
+>>>>>>> 04b96711e96d7ba8356df3f6d30b72b15b5451cb
 1453512453
 Views\AccountClients\AccountBankOpenWindow.xaml;Views\AccountClients\AddBalanceWindow.xaml;Views\AccountClients\Pages\AllAccountsBank.xaml;Views\ClientCardWindow.xaml;Views\LoginWindow.xaml;Views\AccountClients\AccountsClientWindow.xaml;Views\MainWindow\MainWindow.xaml;Views\MainWindow\Pages\AppSettingPage.xaml;Views\MainWindow\Pages\ClientsPage.xaml;Views\MainWindow\Pages\EmptyPage.xaml;Views\AccountClients\Pages\TransferPage.xaml;
 
