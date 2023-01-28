@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace HM11._6.Models.Worker
 {
+    /// <summary>
+    /// Репозиторий истории
+    /// </summary>
     public class HistoryRepository : IFileRepository<HistoryArgs>
     {
         private static int Id;

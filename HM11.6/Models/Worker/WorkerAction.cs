@@ -18,7 +18,11 @@ namespace HM11._6.Models.Worker
         {
             this.Worker = worker;
         }
-
+        /// <summary>
+        /// Добавление действия
+        /// </summary>
+        /// <param name="typeAction">тип дейсвтия</param>
+        /// <param name="currentClient">у кого было сделано действие</param>
         public void PublicHistory(string typeAction, ClientInfo currentClient)
         {
             var args = new HistoryArgs()
