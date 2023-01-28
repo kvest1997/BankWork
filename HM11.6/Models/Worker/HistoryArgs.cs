@@ -9,6 +9,9 @@ namespace HM11._6.Models.Worker
 {
     public class HistoryArgs
     {
+        /// <summary>
+        /// Структура аргумента истории
+        /// </summary>
         public int Id { get; set; }
         public string Time { get; set; }
         public string TypeAction { get; set; }

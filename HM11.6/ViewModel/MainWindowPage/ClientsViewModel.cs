@@ -21,7 +21,9 @@ namespace HM11._6.ViewModel.MainWindowPage
         public ObservableCollection<ClientInfo> Clients { get; }
 
         public MainWindowViewModel MainViewModel;
+
         private HistoryListViewModel historyListVM;
+
         public WorkerAction workerAction;
         public ClientsViewModel()
         {
@@ -61,11 +63,14 @@ namespace HM11._6.ViewModel.MainWindowPage
 
             _selectedIndex = 0;
             UpdateClientsList += UpdateClients;
+
+            //Подпись на событие для добавление истории
             workerAction.Post += WorkerAction_Post;
         }
 
         private void WorkerAction_Post(object arg1, HistoryArgs arg2)
         {
+            //Отправка действия во вьюмодел листа истории
             historyListVM.WorkerActionSave(arg1, arg2);
         }
 
