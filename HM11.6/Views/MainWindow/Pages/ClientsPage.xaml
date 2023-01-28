@@ -57,6 +57,10 @@
                     Margin="5" Width="120"
                     Command="{Binding AccountClientCommand}"
                     IsEnabled="{Binding EnableAccountClient}"/>
+            <Button Content="Журнал действий"
+                    Margin="5" Width="120"
+                    Command="{Binding OpenHistoryClientCommand}"
+                    />
         </StackPanel>
 
     </Grid>

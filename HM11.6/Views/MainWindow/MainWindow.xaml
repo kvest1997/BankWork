@@ -25,13 +25,13 @@
                     FontSize="15"
                     Height="30"
                     Command="{Binding Path=SetClientsView}"/>
-            
+
             <Button Content="Настройки"
                     Margin="5"
                     FontSize="15"
                     Height="30"
                     Command="{Binding Path=SetAppSettingsView}"/>
-            
+
             <Button Content="Выход"
                     Margin="5"
                     FontSize="15"

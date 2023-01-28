@@ -155,6 +155,8 @@ namespace HM11._6.ViewModel.AccountsBank
             clientVM.MainViewModel.Bank.UpdateAccountBank(SelectedAccountFrom);
             clientVM.MainViewModel.Bank.UpdateAccountBank(SelectedAccountTo);
 
+            clientVM.workerAction.PublicHistory("Перевод между счетами", _currentClient);
+
         }
         private bool CanTransferFromToExecute(object p) => true;
         #endregion
@@ -188,6 +190,7 @@ namespace HM11._6.ViewModel.AccountsBank
         private void OnTransferAccountClientToClientExecuted(object p)
         {
             TransferBalance.TransferBalance(SelectAccountToClient, SelectedClient, BalanceTransfer);
+            clientVM.workerAction.PublicHistory("Перевод между пользователями", _currentClient);
         }
         private bool CanTransferBalanceExecute(object p) => true;
 

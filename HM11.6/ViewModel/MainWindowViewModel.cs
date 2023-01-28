@@ -44,10 +44,10 @@ namespace HM11._6.ViewModel.MainWindowPage
             _appSettingsRepository = new AppSettingRepository();
             AppSettings = _appSettingsRepository.Load();
 
-            Bank = new Bank("Bank HW11.6", new ClientFileRepository(AppSettings.ClientRepositoryFile),new AccountRepository(AppSettings.AccountRepositoryFile), worker);
+            Bank = new Bank("Bank HW11.6", new ClientFileRepository(AppSettings.ClientRepositoryFile),new AccountRepository(AppSettings.AccountRepositoryFile), new HistoryRepository(AppSettings.HistoryRepositoryFile), worker);
             _title = $"{Bank.Name}. Программа консультант";
             Worker = worker;
-
+      
             _clients = new ClientsPage();
             _appSettings = new AppSettingPage();
             _clients.DataContext = new ClientsViewModel(this);

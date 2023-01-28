@@ -19,15 +19,31 @@ namespace HM11._6.Models
 
         public IFileRepository<Client> ClientRepository { get; set; }
         public IFileRepository<Account> AccountsRepository { get; set; }
+        public IFileRepository<HistoryArgs> HistoryRepository { get; set; }
+
         private readonly WorkerBase _worker;
 
-        public Bank(string name, IFileRepository<Client> clientsRepository, IFileRepository<Account> accountsRepository, WorkerBase worker)
+        public Bank(string name, IFileRepository<Client> clientsRepository, IFileRepository<Account> accountsRepository, IFileRepository<HistoryArgs> historyRepository, WorkerBase worker)
         {
             Name = name;
             AccountsRepository = accountsRepository;
             ClientRepository = clientsRepository;
+            HistoryRepository = historyRepository;
             _worker = worker;
         }
+
+        public IEnumerable<HistoryArgs> GetHistory()
+        {
+            var history = new List<HistoryArgs>();
+
+            foreach (var h in HistoryRepository)
+            {
+                history.Add(h);
+            }
+
+            return history;
+        }
+
         /// <summary>
         /// Получение информации о клиентах в список
         /// </summary>
@@ -109,6 +125,16 @@ namespace HM11._6.Models
         public void UpdateAccountBank(Account account)
         {
             AccountsRepository.EditFileRepository(account);
+        }
+
+        public void AddHistoryAction(HistoryArgs history)
+        {
+            HistoryRepository.AddFileRepository(history);
+        }
+
+        public void RemoveHistoryAction(HistoryArgs history)
+        {
+            HistoryRepository.DeleteFileRepository(history.Id);
         }
     }
 }

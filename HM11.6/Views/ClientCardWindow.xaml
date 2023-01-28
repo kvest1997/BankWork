@@ -60,9 +60,8 @@
                     <Setter Property="Margin" Value="10,2,0,2"/>
                     <Setter Property="MinHeight" Value="35"/>
                 </Style>
-                
-                
             </Grid.Resources>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

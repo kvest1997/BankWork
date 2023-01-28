@@ -22,7 +22,6 @@ namespace HM11._6.ViewModel
         private Bank _bank { get; set; }
         private readonly ClientsViewModel _clientsViewModel;
 
-
         public ClientCardViewModel(ClientInfo clientInfo, Bank bank, ClientsViewModel clientsViewModel, UserAccess userAccess)
         {
             Debug.WriteLine($"Вызов конструктора {this.GetType().Name} с параметрами: {nameof(clientInfo)} {nameof(bank)} {nameof(clientsViewModel)} {nameof(userAccess)}");

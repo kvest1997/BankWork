@@ -30,13 +30,15 @@ namespace HM11._6.ViewModel.AccountsBank
 
             _accountsPage = new AllAccountsBank
             {
-                DataContext = new CurrentAccountBankViewModel(clientsViewModel, clientInfo, clientsViewModel.MainViewModel.Bank)
+                DataContext = new CurrentAccountBankViewModel(clientsViewModel, 
+                clientInfo, clientsViewModel.MainViewModel.Bank)
             };
 
             _transferPage = new TransferPage()
             {
                 
-                DataContext = new TransferAccountsBankViewModel(clientsViewModel, clientInfo)
+                DataContext = new TransferAccountsBankViewModel(clientsViewModel, 
+                clientInfo)
             };
 
 

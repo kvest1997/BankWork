@@ -33,7 +33,9 @@ namespace HM11._6.Models.Infastructure
             if (!(currentBalance >= balanceTransfer && currentBalance > 0))
             {
                 MessageBox.Show($"Недостаточно средств {currentBalance}");
+                return;
             }
+
             int balanceSelectedClient = 0;
             foreach (var a in Bank.GetAccountsInfos())
             {

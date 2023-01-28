@@ -32,7 +32,8 @@ namespace HM11._6.ViewModel.AccountsBank
         public CurrentAccountBankViewModel()
         { }
 
-        public CurrentAccountBankViewModel(ClientsViewModel clientsView, ClientInfo clientInfo, Bank bank)
+        public CurrentAccountBankViewModel(ClientsViewModel clientsView, 
+            ClientInfo clientInfo, Bank bank)
         {
             ClientsViewModel = clientsView;
             ClientInfo = clientInfo;
@@ -79,6 +80,8 @@ namespace HM11._6.ViewModel.AccountsBank
 
             if (p is Window win)
                 win.Close();
+
+            ClientsViewModel.workerAction.PublicHistory("Добавление на счет", ClientInfo);
         }
         private bool CanAddBalanceAccountExecute(object p) => true;
         #endregion
@@ -101,18 +104,6 @@ namespace HM11._6.ViewModel.AccountsBank
         /// Открытие нового счета
         /// </summary>
         #region OpenNewAccountBank
-
-
-        private bool CheckAccountBank()
-        {
-            bool flag = false;
-
-            if (Accounts.Count == 2)
-                flag = true;
-
-            return flag;
-        }
-
         public ICommand OpenNewAccountBank { get; }
         private void OnOpenNewAccountBankExecuted(object p)
         {
@@ -126,7 +117,7 @@ namespace HM11._6.ViewModel.AccountsBank
             AccountBankOpenViewModel accountBankOpenViewModel = new AccountBankOpenViewModel(_bank, this, ClientInfo);
             accountBankOpenWindow.DataContext = accountBankOpenViewModel;
             accountBankOpenWindow.ShowDialog();
-
+            ClientsViewModel.workerAction.PublicHistory("Новый счет", ClientInfo);
         }
         private bool CanOpenNewAccountBankExecute(object p) => true;
         #endregion
@@ -143,6 +134,9 @@ namespace HM11._6.ViewModel.AccountsBank
 
             _bank.CloseAccountBank(SelectedAccount);
             UpdateAccountsList.Invoke();
+
+            ClientsViewModel.workerAction.PublicHistory("Закрытие счета",
+                ClientInfo);
         }
         private bool CanCloseAccountBankExecute(object p) => true;
         #endregion

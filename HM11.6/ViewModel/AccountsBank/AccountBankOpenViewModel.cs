@@ -28,14 +28,11 @@ namespace HM11._6.ViewModel.AccountsBank
                 CanSaveNewAccontBankExecute);
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// Проверка на тип аккаунта
         /// </summary>
         /// <param name="typeAccount">Выбранный тип</param>
         /// <returns>Возвращает ложь или истина при проверке</returns>
-=======
->>>>>>> 04b96711e96d7ba8356df3f6d30b72b15b5451cb
         private bool CheckTypeAccount(TypeAccount typeAccount)
         {
             bool flag = false;
@@ -51,10 +48,7 @@ namespace HM11._6.ViewModel.AccountsBank
             return flag;
         }
 
-<<<<<<< HEAD
         #region SaveNewAccountBank
-=======
->>>>>>> 04b96711e96d7ba8356df3f6d30b72b15b5451cb
         public ICommand SaveNewAccountBank { get; }
         private bool CanSaveNewAccontBankExecute(object p) => true;
         private void OnSaveNewAccountBankExecuted(object p)

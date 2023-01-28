@@ -83,8 +83,11 @@
     <Compile Include="Models\PersonalData\PassportData.cs" />
     <Compile Include="Models\PersonalData\Person.cs" />
     <Compile Include="Models\Worker\Consultant.cs" />
+    <Compile Include="Models\Worker\HistoryArgs.cs" />
+    <Compile Include="Models\Worker\HistoryRepository.cs" />
     <Compile Include="Models\Worker\Manager.cs" />
     <Compile Include="Models\Worker\UserAccess.cs" />
+    <Compile Include="Models\Worker\WorkerAction.cs" />
     <Compile Include="Models\Worker\WorkerBase.cs" />
     <Compile Include="ViewModel\AccountsBank\AccountBankOpenViewModel.cs" />
     <Compile Include="ViewModel\AccountsBank\AccountsBankViewModel.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="ViewModel\AccountsBank\CurrentAccountBankViewModel.cs" />
     <Compile Include="Models\Infastructure\IAddBalanceAccount.cs" />
     <Compile Include="ViewModel\AccountsBank\TransferAccountsBankViewModel.cs" />
+    <Compile Include="ViewModel\HistoryListViewModel.cs" />
     <Compile Include="ViewModel\MainWindowPage\AppSettingsViewModel.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="ViewModel\ClientCardViewModel.cs" />
@@ -109,6 +113,9 @@
     </Compile>
     <Compile Include="Views\ClientCardWindow.xaml.cs">
       <DependentUpon>ClientCardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistroyListWindow.xaml.cs">
+      <DependentUpon>HistroyListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InputValueHighlightingEnum.cs" />
     <Compile Include="Views\AccountClients\AccountsClientWindow.xaml.cs">
@@ -139,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ClientCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HistroyListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

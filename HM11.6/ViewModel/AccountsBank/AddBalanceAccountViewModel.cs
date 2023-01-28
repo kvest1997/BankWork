@@ -22,7 +22,8 @@ namespace HM11._6.ViewModel.AccountsBank
         private Bank _bank;
         public AddBalanceAccountViewModel() { }
 
-        public AddBalanceAccountViewModel(AccountsInfo account, Bank bank, CurrentAccountBankViewModel currentAccountBankVM)
+        public AddBalanceAccountViewModel(AccountsInfo account, 
+            Bank bank, CurrentAccountBankViewModel currentAccountBankVM)
         {
             currentAccount = account;
             _bank = bank;
@@ -42,6 +43,7 @@ namespace HM11._6.ViewModel.AccountsBank
         {
             currentAccount = (AccountsInfo)addAccountBalance.AddBalance(_addBalanceCount);
             _bank.UpdateAccountBank(currentAccount);
+            
         }
 
         public ICommand AddBalance { get; }

@@ -160,3 +160,5 @@ C:\Users\Julien\Desktop\skillbox\Bank\BankWork\HM11.6\obj\Debug\HM11.6.csproj.Co
 C:\Users\Julien\Desktop\skillbox\Bank\BankWork\HM11.6\obj\Debug\HM11.6.csproj.CopyComplete
 C:\Users\Julien\Desktop\skillbox\Bank\BankWork\HM11.6\obj\Debug\HM11.6.exe
 C:\Users\Julien\Desktop\skillbox\Bank\BankWork\HM11.6\obj\Debug\HM11.6.pdb
+D:\Учеба\Skillbox\Homework11.6-main\HM11.6\obj\Debug\Views\HistroyListWindow.g.cs
+D:\Учеба\Skillbox\Homework11.6-main\HM11.6\obj\Debug\Views\HistroyListWindow.baml

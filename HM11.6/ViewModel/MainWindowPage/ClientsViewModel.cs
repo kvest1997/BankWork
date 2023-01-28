@@ -1,11 +1,13 @@
 ﻿using HM11._6.Models.Clients;
 using HM11._6.Models.Infastructure.Commands;
+using HM11._6.Models.Worker;
 using HM11._6.ViewModel.AccountsBank;
 using HM11._6.ViewModel.Base;
 using HM11._6.Views;
 using HM11._6.Views.MainWindow;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HM11._6.ViewModel.MainWindowPage
@@ -19,7 +21,8 @@ namespace HM11._6.ViewModel.MainWindowPage
         public ObservableCollection<ClientInfo> Clients { get; }
 
         public MainWindowViewModel MainViewModel;
-
+        private HistoryListViewModel historyListVM;
+        public WorkerAction workerAction;
         public ClientsViewModel()
         {
 
@@ -43,16 +46,29 @@ namespace HM11._6.ViewModel.MainWindowPage
             AccountClientCommand = new RelayCommand(OnAccountClientCommand, 
                 CanAccountClientCommandExecute);
 
+            OpenHistoryClientCommand = new RelayCommand(OnOpenHistoryClientCommandExecuted,
+                CanOpenHistoryClientCommandExecute);
+
             Clients = new ObservableCollection<ClientInfo>();
+
+            workerAction = new WorkerAction(mainVM.Worker);
 
             _enableAddClient = mainVM.Worker.UserAccess.Commands.AddClient;
             _enableDelClient = mainVM.Worker.UserAccess.Commands.DelClient;
             _enableEditClient = mainVM.Worker.UserAccess.Commands.EditClient && Clients.Count > 0;
             _enableAccountClient = mainVM.Worker.UserAccess.Commands.AccountClient;
+            historyListVM = new HistoryListViewModel(MainViewModel.Bank);
 
             _selectedIndex = 0;
             UpdateClientsList += UpdateClients;
+            workerAction.Post += WorkerAction_Post;
         }
+
+        private void WorkerAction_Post(object arg1, HistoryArgs arg2)
+        {
+            historyListVM.WorkerActionSave(arg1, arg2);
+        }
+
 
         /// <summary>
         /// Обновление клиентов
@@ -69,7 +85,21 @@ namespace HM11._6.ViewModel.MainWindowPage
             SelectedIndex = selectedIndex;
 
             EnableEditClient = MainViewModel.Worker.UserAccess.Commands.EditClient && Clients.Count > 0;
+            
         }
+
+        #region OpenHistoryClient
+        public ICommand OpenHistoryClientCommand { get; }
+        private void OnOpenHistoryClientCommandExecuted(object p)
+        {
+            HistroyListWindow historyWin = new HistroyListWindow();
+            HistoryListViewModel historyViewModel = historyListVM;
+            historyWin.DataContext = historyViewModel;
+            historyWin.ShowDialog();
+        }
+        private bool CanOpenHistoryClientCommandExecute(object p) => true;
+        
+        #endregion
 
         #region AddClient
         public ICommand AddClientCommand { get; }
@@ -79,6 +109,8 @@ namespace HM11._6.ViewModel.MainWindowPage
             ClientCardViewModel clientCardViewModel = new ClientCardViewModel(new ClientInfo(), MainViewModel.Bank, this, MainViewModel.Worker.UserAccess);
             clientCard.DataContext = clientCardViewModel;
             clientCard.ShowDialog();
+
+            workerAction.PublicHistory("Добавление", _selectedClient);
         }
 
         private bool CanAddClientCommandExecute(object p) => true;
@@ -92,6 +124,8 @@ namespace HM11._6.ViewModel.MainWindowPage
 
             MainViewModel.Bank.DeleteClient(SelectedClient);
             UpdateClients();
+
+            workerAction.PublicHistory("Удаление", _selectedClient);
         }
 
         private bool CanDelClientCommandExecute(object p) => true;
@@ -104,9 +138,12 @@ namespace HM11._6.ViewModel.MainWindowPage
             if (SelectedClient is null) return;
 
             ClientCardWindow clientCard = new ClientCardWindow();
-            ClientCardViewModel clientCardViewModel = new ClientCardViewModel(SelectedClient, MainViewModel.Bank, this, MainViewModel.Worker.UserAccess);
+            ClientCardViewModel clientCardViewModel = new ClientCardViewModel(SelectedClient, 
+                MainViewModel.Bank, this, MainViewModel.Worker.UserAccess);
             clientCard.DataContext = clientCardViewModel;
             clientCard.ShowDialog();
+
+            workerAction.PublicHistory("Редактирование", _selectedClient);
         }
         private bool CanEditClientCommandExecute(object p) => true;
         #endregion
